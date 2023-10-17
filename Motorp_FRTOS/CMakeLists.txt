@@ -2,11 +2,11 @@
 
 link_directories(libmicroros)
 
-add_executable(pico_micro_ros_SCARA
-    pico_micro_ros_SCARA.cpp
+add_executable(pico_micro_ros_motor
+    pico_micro_ros_motor.cpp
     pico_uart_transport.c
 )
-target_link_libraries(pico_micro_ros_SCARA
+target_link_libraries(pico_micro_ros_motor
     pico_stdlib
     microros
     hardware_pwm
@@ -14,7 +14,7 @@ target_link_libraries(pico_micro_ros_SCARA
     freertos
 )
 
-target_include_directories(pico_micro_ros_SCARA PUBLIC
+target_include_directories(pico_micro_ros_motor PUBLIC
     libmicroros/include
 )
 
@@ -22,11 +22,11 @@ SET(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -ffunction-sections -fdata-sections")
 SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -ffunction-sections -fdata-sections")
 
 # Configure Pico
-pico_enable_stdio_usb(pico_micro_ros_SCARA 1)
-pico_enable_stdio_uart(pico_micro_ros_SCARA 0)
+pico_enable_stdio_usb(pico_micro_ros_motor 1)
+pico_enable_stdio_uart(pico_micro_ros_motor 0)
 add_compile_definitions(PICO_UART_ENABLE_CRLF_SUPPORT=0)
 add_compile_definitions(PICO_STDIO_ENABLE_CRLF_SUPPORT=0)
 add_compile_definitions(PICO_STDIO_DEFAULT_CRLF=0)
 
 # Generate UF2
-pico_add_extra_outputs(pico_micro_ros_SCARA)
+pico_add_extra_outputs(pico_micro_ros_motor)
